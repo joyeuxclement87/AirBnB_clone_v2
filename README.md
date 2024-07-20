@@ -1,1 +1,1 @@
-working on 0x04. AirBnB clone - Web framework
+0x02. AirBnB clone - MySQL
