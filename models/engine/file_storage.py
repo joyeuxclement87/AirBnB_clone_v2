@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-this to Contains the FileStorage class
+to Contains the FileStorage class
 """
+
 import json
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -16,9 +17,11 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 
 
 class FileStorage:
-    """this is serializes instances to a JSON file & deserializes back to instances"""
+    """to serializes instances to a JSON file & deserializes back to instances"""
 
+    # string - path to the JSON file
     __file_path = "file.json"
+    # dictionary - empty but will store all objects by <class name>.id
     __objects = {}
 
     def all(self, cls=None):
@@ -32,7 +35,7 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        """thi to set in __objects the obj with key <obj class name>.id"""
+        """to sets in __objects the obj with key <obj class name>.id"""
         if obj is not None:
             key = obj.__class__.__name__ + "." + obj.id
             self.__objects[key] = obj
@@ -46,7 +49,7 @@ class FileStorage:
             json.dump(json_objects, f)
 
     def reload(self):
-        """this to deserializes the JSON file to __objects"""
+        """to deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path, 'r') as f:
                 jo = json.load(f)
@@ -56,12 +59,12 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """this delete obj from __objects if it’s inside"""
+        """to delete obj from __objects if it’s inside"""
         if obj is not None:
             key = obj.__class__.__name__ + '.' + obj.id
             if key in self.__objects:
                 del self.__objects[key]
 
     def close(self):
-        """this to call reload() method for deserializing the JSON file to objects"""
+        """to call reload() method for deserializing the JSON file to objects"""
         self.reload()

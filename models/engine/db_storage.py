@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-this to Contains the class DBStorage
+to Contains the class DBStorage
 """
 
 import models
@@ -21,11 +21,12 @@ classes = {"Amenity": Amenity, "City": City,
 
 
 class DBStorage:
+    """to interaacts with the MySQL database"""
     __engine = None
     __session = None
 
     def __init__(self):
-        """Instantiate to the  DBStorage object"""
+        """to Instantiate a DBStorage object"""
         HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
         HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
         HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
@@ -40,7 +41,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """this is query on the current database session"""
+        """to query on the current database session"""
         new_dict = {}
         for clss in classes:
             if cls is None or cls is classes[clss] or cls is clss:
@@ -51,7 +52,7 @@ class DBStorage:
         return (new_dict)
 
     def new(self, obj):
-        """this to add the object to the current database session"""
+        """to add the object to the current database session"""
         self.__session.add(obj)
 
     def save(self):
@@ -71,5 +72,5 @@ class DBStorage:
         self.__session = Session
 
     def close(self):
-        """this to call remove() method on the private session attribute"""
+        """cto all remove() method on the private session attribute"""
         self.__session.remove()
